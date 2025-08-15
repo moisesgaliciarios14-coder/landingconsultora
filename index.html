@@ -17,26 +17,45 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1551774522896918'); /* tu Pixel ID */
+  fbq('init', '1551774522896918');
   fbq('track', 'PageView');
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=1551774522896918&ev=PageView&noscript=1"/>
+    src="https://www.facebook.com/tr?id=1551774522896918&ev=PageView&noscript=1"/>
   </noscript>
   <!-- End Meta Pixel Code -->
 
   <style>
-    :root { --accent:#6c2bd9; --wp:#25D366; }
-    body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f5f5f5; color:#111; }
-    h1 { color: var(--accent); font-size: 28px; margin: 0 0 8px; }
-    p  { font-size: 18px; margin: 0 0 16px; }
-    .whatsapp-btn {
-      background: var(--wp); color: #fff; padding: 14px 22px; font-size: 18px;
-      border-radius: 10px; font-weight: 700; text-decoration: none; display:inline-block;
-      box-shadow: 0 8px 18px rgba(37,211,102,.35);
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f5f5f5;
     }
-    .whatsapp-btn:hover { filter: brightness(1.05); }
+    h1 {
+      color: #6c2bd9;
+      font-size: 28px;
+    }
+    p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .whatsapp-btn {
+      background-color: #25D366;
+      color: white;
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    .whatsapp-btn:hover {
+      background-color: #1ebe57;
+    }
   </style>
 </head>
 <body>
@@ -44,11 +63,9 @@
   <h1>🎁 Bono de Bienvenida 50%</h1>
   <p>Sumate hoy y recibí un 50% extra en tu primera carga.</p>
 
-  <!-- Botón con evento del Pixel para medir clics a WhatsApp -->
-  <a class="whatsapp-btn"
-     href="https://api.whatsapp.com/send?phone=5491168664669&text=%C2%A1Hola!%20Quiero%20activar%20mi%20bono%20del%2050%25"
-     target="_blank" rel="noopener"
-     onclick="if(window.fbq){fbq('trackCustom','ClickWhatsApp');}">
+  <a class="whatsapp-btn" 
+     href="https://wa.me/5491168664669?text=%C2%A1Hola!%20Quiero%20activar%20mi%20bono%20del%2050%%20🎰" 
+     target="_blank">
     💬 Enviar mensaje por WhatsApp
   </a>
 
