@@ -7,6 +7,11 @@
   <meta name="description" content="Bono, promos y pagos rápidos. Atención por WhatsApp 24/7.">
   <meta name="theme-color" content="#6c2bd9">
 
+  <!-- Tipografías: títulos llamativos + texto legible -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -28,143 +33,229 @@
 
   <style>
     :root{
-      --gold:#d4af37;
-      --bg:#0b0d12;
-      --muted:#9aa3af;
-      --wp:#25D366;
+      --bg-1:#0a0b1e;
+      --bg-2:#111236;
+      --primary:#7c3aed;     /* morado */
+      --primary-2:#22d3ee;   /* cyan */
+      --accent:#f472b6;      /* pink */
+      --text:#e7e8ff;
+      --muted:#b9b9d6;
+      --glass:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.14);
+      --shadow:0 10px 35px rgba(124,58,237,.35);
     }
+
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:linear-gradient(180deg,#0b0d12 0%, #141824 100%);
-      color:#fff; text-align:center; padding:24px;
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #3b82f6 0%, transparent 60%),
+        radial-gradient(1100px 500px at 110% 0%, #7c3aed 0%, transparent 60%),
+        linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 60%, var(--bg-1) 100%);
+      font-family:'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
     }
-    .wrap{max-width:960px; margin:0 auto}
-    .headline{
-      font-weight:800; font-size:clamp(22px,4vw,38px); 
-      color:var(--gold); letter-spacing:.3px; margin:14px 0 8px;
+
+    /* partículas suaves en el fondo */
+    .particles{
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background:
+        radial-gradient(6px 6px at 12% 22%, rgba(34,211,238,.6), transparent 60%),
+        radial-gradient(6px 6px at 72% 18%, rgba(244,114,182,.6), transparent 60%),
+        radial-gradient(6px 6px at 32% 78%, rgba(124,58,237,.7), transparent 60%),
+        radial-gradient(6px 6px at 88% 68%, rgba(34,211,238,.5), transparent 60%);
+      filter: blur(1px) saturate(140%);
+      animation: float 14s ease-in-out infinite alternate;
+      opacity:.55;
     }
-    .sub{color:#e5e7eb; margin:0 0 18px}
-    .bar{
-      display:flex; gap:12px; flex-wrap:wrap; justify-content:center; 
-      align-items:center; background:#111826; border:1px solid #1f2937;
-      padding:10px 14px; border-radius:14px; margin:10px auto 18px;
-      box-shadow:0 8px 24px rgba(0,0,0,.25);
+    @keyframes float{
+      from{transform: translateY(0) scale(1)}
+      to{transform: translateY(-16px) scale(1.02)}
     }
-    .tag{
-      background:rgba(212,175,55,.12); color:var(--gold);
-      padding:6px 10px; border-radius:999px; font-weight:700; font-size:14px;
-      border:1px solid rgba(212,175,55,.35);
+
+    .container{max-width:1140px; margin:0 auto; padding:0 20px}
+    a{color:inherit; text-decoration:none}
+
+    /* Header sticky con glass */
+    .site-header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px) saturate(140%);
+      background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+      border-bottom:1px solid var(--border);
     }
-    .timer{
-      display:flex; gap:10px; align-items:baseline; font-variant-numeric:tabular-nums;
-      font-weight:700;
+    .header-inner{height:72px; display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:10px}
+    .brand .icon{color:var(--primary-2); filter:drop-shadow(0 0 8px rgba(34,211,238,.6))}
+    .brand .name{font-family:'Bebas Neue', system-ui; letter-spacing:.6px; font-size:28px}
+
+    /* Botones con glow */
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      font-weight:800; padding:12px 20px; border-radius:12px; border:1px solid transparent; transition:.2s}
+    .btn.ghost{border-color:var(--primary-2); color:var(--text)}
+    .btn.ghost:hover{background:rgba(34,211,238,.12)}
+    .btn.primary{
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary-2) 100%);
+      background-size: 200% 100%;
+      color:white; box-shadow: var(--shadow);
+      text-shadow:0 1px 0 rgba(0,0,0,.25);
     }
-    .timer span{font-size:18px}
-    .muted{color:var(--muted); font-weight:500; font-size:13px}
-    .btn-wp{
-      display:inline-block; background:var(--wp); color:#0a0f0a; 
-      padding:14px 22px; font-size:18px; border-radius:12px; 
-      text-decoration:none; font-weight:800; margin:8px 0 6px;
-      box-shadow:0 8px 24px rgba(37,211,102,.35);
+    .btn.primary:hover{transform:translateY(-1px); background-position:100% 0}
+
+    /* HERO */
+    .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--border)}
+    .hero .halo{
+      position:absolute; inset:-20% -10% -10% -10%;
+      background:
+       radial-gradient(800px 360px at 50% -10%, rgba(124,58,237,.35), transparent 70%),
+       radial-gradient(700px 320px at 10% 120%, rgba(34,211,238,.25), transparent 70%),
+       radial-gradient(700px 320px at 90% 120%, rgba(244,114,182,.25), transparent 70%);
+      pointer-events:none; mix-blend: screen;
+      animation: breathe 16s ease-in-out infinite alternate;
     }
-    .btn-wp:hover{filter:brightness(1.05)}
-    .btn-wp[disabled]{opacity:.55; cursor:not-allowed; filter:none; box-shadow:none}
-    .hero{
-      margin:18px auto; border-radius:16px; overflow:hidden; 
-      border:1px solid #1f2937; box-shadow:0 10px 30px rgba(0,0,0,.35);
+    @keyframes breathe{
+      from{transform:scale(1)}
+      to{transform:scale(1.06)}
     }
-    .hero img{max-width:100%; display:block}
-    .section{margin:18px auto 8px}
-    .legal{color:#9aa3af; font-size:12px; margin-top:8px}
+    .hero-inner{position:relative; padding:96px 0 56px}
+    h1{
+      margin:0 0 12px;
+      font-family:'Bebas Neue', system-ui;
+      font-size: clamp(2.4rem, 5.2vw, 4.2rem);
+      line-height:1.02; letter-spacing:.5px;
+      background: linear-gradient(90deg, #ffffff 0%, #c7d2fe 40%, #22d3ee 60%, #f472b6 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow: 0 10px 40px rgba(124,58,237,.35);
+    }
+    .lead{color:var(--muted); font-size:1.1rem; max-width:760px}
+    .hero-cta{margin-top:24px}
+    .mini{font-size:.92rem; color:#cfd0ff; opacity:.9; margin-top:10px}
+
+    /* Features (glass cards) */
+    .features{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px; margin-top:32px}
+    .card{background:var(--glass); border:1px solid var(--border); border-radius:16px; padding:18px; backdrop-filter: blur(12px)}
+    .card .head{display:flex; align-items:center; gap:10px; font-weight:800; margin-bottom:6px}
+    .badge{display:inline-grid; place-items:center; width:34px;height:34px; border-radius:999px;
+      background:linear-gradient(135deg, rgba(124,58,237,.45), rgba(34,211,238,.35))}
+    .card p{margin:0; color:#e7e8ff}
+
+    /* Steps con numeración bold */
+    .steps{padding:64px 0; border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.00))}
+    .steps h2{margin:0 0 24px; font-size:1.8rem; font-weight:800}
+    .grid3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+    .step{background:var(--glass); border:1px solid var(--border); border-radius:16px; padding:18px; min-height:150px; backdrop-filter: blur(10px)}
+    .num{width:44px; height:44px; border-radius:999px; display:grid; place-items:center; font-weight:900; color:white;
+      background:linear-gradient(135deg, var(--primary), var(--primary-2)); box-shadow:0 8px 26px rgba(34,211,238,.25); margin-bottom:10px}
+    .mt-32{margin-top:32px}
+
+    /* Footer */
+    .site-footer{border-top:1px solid var(--border); padding:20px 0; color:#cfd0ff; background:rgba(0,0,0,.25)}
+    .legal{opacity:.9}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .features{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 720px){
+      .features{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .header-inner{padding:0 10px}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="particles" aria-hidden="true"></div>
 
-    <!-- CTA ARRIBA -->
-    <a class="btn-wp"
-       href="https://api.whatsapp.com/send?phone=5491168664669&text=%C2%A1Hola!%20Quiero%20activar%20mi%20bono%20del%2050%25"
-       target="_blank" rel="noopener"
-       onclick="fbq('trackCustom','ClickWhatsApp');">
-      📲 Chatear por WhatsApp y activar bono
-    </a>
-
-    <h1 class="headline">🎰 Bono de Bienvenida 50%</h1>
-    <p class="sub">Cargás hoy y jugás con más. Atención 24/7 por WhatsApp.</p>
-
-    <!-- Barra con contador -->
-    <div class="bar">
-      <div class="tag">🔥 Promo activa</div>
-      <div class="timer" id="timer">
-        <span id="d">00</span>d · <span id="h">00</span>h · <span id="m">00</span>m · <span id="s">00</span>s
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="icon">✦</span>
+        <span class="name">ArgenBet</span>
       </div>
-      <span class="muted">Termina hoy a las 23:59</span>
-    </div>
-
-    <!-- Imagen / banner -->
-    <div class="hero">
-      <img src="tu-imagen.jpg" alt="Bono de Bienvenida 50%">
-    </div>
-
-    <div class="section">
-      <p>Promos y pagos rápidos. Usuario en minutos. Empezá con ventaja.</p>
-      <!-- CTA ABAJO -->
-      <a class="btn-wp"
-         id="cta-bottom"
-         href="https://api.whatsapp.com/send?phone=5491168664669&text=%C2%A1Hola!%20Quiero%20activar%20mi%20bono%20del%2050%25"
-         target="_blank" rel="noopener"
-         onclick="fbq('trackCustom','ClickWhatsApp');">
-        ✅ Activar bono por WhatsApp
+      <a class="btn ghost"
+         href="https://wa.me/5491168665216?text=Hola%20quiero%20activar%20mi%20Bono%2050%25"
+         target="_blank" rel="noopener" aria-label="Chatear por WhatsApp"
+         onclick="if(window.fbq){fbq('trackCustom','ClickWhatsApp');}">
+        WhatsApp
       </a>
-      <div class="legal">*Oferta válida para nuevas altas. Aplican T&C.</div>
     </div>
-  </div>
+  </header>
 
-  <!-- Lógica del contador -->
+  <main>
+    <section class="hero">
+      <div class="halo" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <h1>DIVERTITE HOY. REGISTRATE. GANÁ EN GRANDE.</h1>
+        <p class="lead">Bonos de bienvenida, promos diarias y <strong>pagos rápidos</strong>. Te acompañamos por WhatsApp las 24 horas.</p>
+        <div class="hero-cta">
+          <a class="btn primary"
+             href="https://wa.me/5491168665216?text=Hola%20quiero%20activar%20mi%20Bono%2050%25"
+             target="_blank" rel="noopener"
+             onclick="if(window.fbq){fbq('trackCustom','ClickWhatsApp');}">
+            💬 Empezar por WhatsApp
+          </a>
+          <div class="mini">Respuesta inmediata • Atención 24/7</div>
+        </div>
+
+        <div class="features">
+          <article class="card">
+            <div class="head"><span class="badge">🎁</span><span>Bono de Bienvenida</span></div>
+            <p>Recibí un plus y empezá con ventaja.</p>
+          </article>
+          <article class="card">
+            <div class="head"><span class="badge">⚡</span><span>Pagos Rápidos</span></div>
+            <p>Depósitos y retiros ágiles y seguros.</p>
+          </article>
+          <article class="card">
+            <div class="head"><span class="badge">🎯</span><span>Soporte 24/7</span></div>
+            <p>Escribinos cuando quieras por WhatsApp.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps">
+      <div class="container">
+        <h2>3 pasos para empezar</h2>
+        <div class="grid3">
+          <div class="step">
+            <div class="num">1</div>
+            <h3>Escribinos por WhatsApp</h3>
+            <p>Tocá el botón y hablá con nuestro equipo.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h3>Registrate en minutos</h3>
+            <p>Te guiamos con el alta y el primer depósito.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h3>Recibí tu bono</h3>
+            <p>Activamos promos y ¡a jugar!</p>
+          </div>
+        </div>
+        <div class="mt-32">
+          <a class="btn primary"
+             href="https://wa.me/5491168665216?text=Hola%20quiero%20activar%20mi%20Bono%2050%25"
+             target="_blank" rel="noopener"
+             onclick="if(window.fbq){fbq('trackCustom','ClickWhatsApp');}">
+            Quiero empezar ahora
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="legal">© <span id="year"></span> ArgenBet. 18+. Jugá responsablemente.</p>
+    </div>
+  </footer>
+
   <script>
-    (function(){
-      // ⏱ Ajustá la fecha/hora límite acá (hoy 23:59 local)
-      const end = new Date(); 
-      end.setHours(23,59,0,0);
-
-      const d=document, $=id=>d.getElementById(id),
-            $d=$('d'),$h=$('h'),$m=$('m'),$s=$('s'),
-            ctas=[...d.querySelectorAll('.btn-wp')];
-
-      function pad(n){return String(n).padStart(2,'0');}
-
-      function tick(){
-        const now = new Date().getTime();
-        const dist = end.getTime() - now;
-
-        if(dist <= 0){
-          // Expiró: desactivamos CTA y cambiamos textos
-          $d.textContent=$h.textContent=$m.textContent=$s.textContent='00';
-          ctas.forEach(btn=>{
-            btn.setAttribute('disabled','disabled');
-            btn.textContent='⏳ Promo reiniciando…';
-          });
-          // Evento de expiración (opcional)
-          if (window.fbq) fbq('trackCustom','CountdownExpired');
-          clearInterval(tmr);
-          return;
-        }
-
-        const days = Math.floor(dist/(1000*60*60*24));
-        const hours = Math.floor((dist%(1000*60*60*24))/(1000*60*60));
-        const minutes = Math.floor((dist%(1000*60*60))/(1000*60));
-        const seconds = Math.floor((dist%(1000*60))/1000);
-
-        $d.textContent = pad(days);
-        $h.textContent = pad(hours);
-        $m.textContent = pad(minutes);
-        $s.textContent = pad(seconds);
-      }
-
-      const tmr = setInterval(tick, 1000);
-      tick();
-    })();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
